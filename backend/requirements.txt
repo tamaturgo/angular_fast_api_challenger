@@ -1,0 +1,6 @@
+# Template fast api dependecies
+uvicorn
+fastapi
+starlette
+mysql-connector-python
+pydantic
