@@ -1,20 +1,37 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { CategoryService } from './category.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
+  providers: [CategoryService]
 })
 export class CategoryComponent {
-  constructor() { }
+  
+  constructor (private categoryService: CategoryService) {}
 
   categoryForm = new FormGroup({
-    categoryName: new FormControl(''),
+    categoryName: new FormControl('', Validators.required)
   });
 
+  name: string | null | undefined = '';
+  getValues() {
+    this.name = this.categoryForm.value.categoryName;
+  }
+
   createCategory() {
-    console.log(this.categoryForm.value);
+    this.name = this.categoryForm.value.categoryName;
+    this.categoryService.addCategory(
+      this.name as string
+    ).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
 
