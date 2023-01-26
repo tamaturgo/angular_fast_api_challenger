@@ -1,0 +1,17 @@
+
+
+<!-- Form: data (CategoryName) -->
+
+<form (ngSubmit)="createCategory()" [formGroup]="categoryForm" class="form">
+
+  <div class="form__group">
+
+    <label for="categoryName" class="form__group__label">Category Name</label>
+
+    <input type="text" id="categoryName" formControlName="categoryName" placeholder="Enter Category Name"
+    formControlname="categoryName" required class="form__group__input">
+
+    <button type="submit" class="form__group__btn" [disabled]="!categoryForm.valid">Submit</button>
+  </div>
+
+</form>
